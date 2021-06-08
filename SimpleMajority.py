@@ -6,9 +6,9 @@ TezID = sp.io.import_stored_contract("TezID v2")
 #
   
 class SimpleMajority(sp.Contract):
-    def __init__(self, ynid, admin, name, question, cost, start, end, requiredMajority, maxParticipants, tezid, requiredProofs):
+    def __init__(self, admin, name, question, cost, start, end, requiredMajority, maxParticipants, tezid, requiredProofs):
       self.init(
-        ynid = ynid,
+        ynid = 1,
         admin = admin,
         name = name,
         question = question,
@@ -118,7 +118,6 @@ def test():
   scenario = sp.test_scenario()
   store, ctrl = TezID.initTests(admin, scenario)
   yn = SimpleMajority(
-      1,
       admin.address,
       "Off with their heads!?",
       "Shall we execute the bankers?",
