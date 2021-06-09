@@ -100,6 +100,11 @@ class SimpleMajority(sp.Contract):
             sp.failwith("Only admin can send")
         sp.send(receiverAddress, amount)
 
+    @sp.entry_point
+    def getResult(self, callback_address):
+        c = sp.contract(sp.TRecord(resolved=sp.TBool, resolve=sp.TString), callback_address).open_some()
+        sp.transfer(sp.record(resolved=self.data.resolved, resolve=self.data.resolve), sp.mutez(0), c)
+
 ## Tests
 #
         
